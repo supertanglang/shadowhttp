@@ -1,0 +1,39 @@
+{# Load the tag library #}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<div class="container">
+    <div class="page-header">
+        <h1>World Conf</h1>
+    </div>
+    {# Display django.contrib.messages as Bootstrap alerts #}
+    {% bootstrap_messages %}
+
+    <p class="lead">Add domain</p>
+    {# Display a form #}
+    <form action="" method="post" class="form" autocomplete="off">
+        {% csrf_token %}
+        {% bootstrap_form form layout='inline'%}
+        {% buttons %}
+        <button type="submit" class="btn btn-primary">
+        {% bootstrap_icon "ok" %} 保存
+        </button>
+        {% endbuttons %}
+    </form>
+    <p class="lead">List</p>
+    <table class="table table-condensed table-hover">
+        <tr><th>Domain</th><th>Add Time</th><th></th></tr>
+        {% for d in domain_list %}
+        <tr><td>{{d.domain}}</td>
+            <td>{{d.add_time}}</td>
+            <td>
+                <a href="{% url 'world_conf_del' pk=d.pk %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
