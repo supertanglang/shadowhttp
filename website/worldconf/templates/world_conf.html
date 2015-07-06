@@ -25,9 +25,11 @@
     </form>
     <p class="lead">List</p>
     <table class="table table-condensed table-hover">
-        <tr><th>Domain</th><th>Add Time</th><th></th></tr>
+        <tr><th>#</th><th>Domain</th><th>Add Time</th><th></th></tr>
         {% for d in domain_list %}
-        <tr><td>{{d.domain}}</td>
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{d.domain}}</td>
             <td>{{d.add_time}}</td>
             <td>
                 <a href="{% url 'world_conf_del' pk=d.pk %}">Delete</a>
